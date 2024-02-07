@@ -1,6 +1,8 @@
 import java.util.Arrays;
 
 public class BinarySearch {
+    public long recursiveTime;
+    public long iterativeTime;
 
     public static String BinarySearch(int n, int[] array) {
         // Binary Search [Recursion]
@@ -17,6 +19,7 @@ public class BinarySearch {
 
             long finish = System.currentTimeMillis();
             long elapsed = finish - start;
+
             System.out.println("Elapsed: " +  elapsed + " milliseconds.");
 
             return text;
@@ -59,6 +62,44 @@ public class BinarySearch {
         //Binary Search [Iterative]
 
         //-----------------------------------
+    }
+
+    public static String iterativeBinarySearch(int n, int[] array) {
+        long startTime = System.currentTimeMillis();
+
+
+        int start = 0;
+        int end = array.length - 1;
+
+        while (start <= end) {
+
+            int middle = (start + end) / 2;
+
+            if (n < array[middle]) {
+                end = middle - 1;
+            }
+
+            if (n > array[middle]) {
+                start = middle + 1;
+            }
+
+            if (n == array[middle]) {
+                String text = "Found: " + n;
+
+                long finishTime = System.currentTimeMillis();
+                long elapsed = finishTime - startTime;
+                System.out.println("Elapsed: " +  elapsed + " milliseconds.");
+
+                return text;
+            }
+        }
+        String text = n + " was not found.";
+
+        long finishTime = System.currentTimeMillis();
+        long elapsed = finishTime - startTime;
+        System.out.println("Elapsed: " +  elapsed + " milliseconds.");
+
+        return text;
     }
 
 }
